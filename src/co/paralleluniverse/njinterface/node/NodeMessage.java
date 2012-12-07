@@ -167,4 +167,64 @@ public class NodeMessage {
             return ref;
         }
     }
+
+    public static class DemonitorMessage extends NodeMessage {
+        private final Pid monitoring;
+        private final Object monitored;
+        private final Reference ref;
+
+        public DemonitorMessage(Pid monitoring, Object monitored, Reference ref) {
+            this.monitoring = monitoring;
+            this.monitored = monitored;
+            this.ref = ref;
+        }
+
+        public Pid getMonitoring() {
+            return monitoring;
+        }
+
+        public Object getMonitored() {
+            return monitored;
+        }
+
+        public Reference getRef() {
+            return ref;
+        }
+    }
+
+    public static class MonitorExit extends NodeMessage {
+        private final Pid monitoring;
+        private final Object monitored;
+        private final Reference ref;
+        private final Object reason;
+
+        public MonitorExit(Object monitored, Pid monitoring, Reference ref, Object reason) {
+            this.monitoring = monitoring;
+            this.monitored = monitored;
+            this.ref = ref;
+            this.reason = reason;
+        }
+
+        public Pid getMonitoring() {
+            return monitoring;
+        }
+
+        public Object getMonitored() {
+            return monitored;
+        }
+
+        public Reference getRef() {
+            return ref;
+        }
+
+        public Object getReason() {
+            return reason;
+        }
+    }
+
+    public static class DistributedProtocolException extends Exception {
+        public DistributedProtocolException(String msg) {
+            super(msg);
+        }
+    }
 }
